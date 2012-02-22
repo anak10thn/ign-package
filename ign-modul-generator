@@ -5,9 +5,10 @@ while read MODULE
 do
 echo ""
 echo "-----------------modul $MODULE-----------------"
-cat new.spec |sed s/"ign-cpanel-new"/"$MODULE"/g > ./SPEC/$MODULE.spec
+cat new.spec |sed s/"ign-cpanel-new"/"$MODULE"/g > ./SPECS/$MODULE.spec
 cd ./DIR
 tar czfv ../SOURCES/$MODULE.tar.gz $MODULE/
+
 echo "-----------------modul $MODULE-----------------"
 echo ""
 done << ign
