@@ -1,2 +1,40 @@
 #!/bin/bash
-rpmbuild -ba ./SPECS/*.spec
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#  
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#  
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+#  MA 02110-1301, USA.
+#  copyleft (c) 2012 Ibnu Yahya <ibnu.yahya@toroo.org>
+
+
+LS=`ls ./SPECS |sed s/.spec//g`
+
+while read MODULE
+do
+
+VERSION=`cat ./SPECS/$MODULE.spec |grep "Version:"|sed s/"Version:"//g`
+RELEASE=`cat ./SPECS/$MODULE.spec |grep "Release:"|sed s/"Release:"//g`
+ARC=`cat ./SPECS/$MODULE.spec |grep "BuildArch:"|sed s/"BuildArch:"//g`
+
+if [ -f ./RPMS/$ARC/$MODULE-$VERSION-$RELEASE.$ARC.rpm ]; then
+echo ----------source $MODULE sudah di build---------
+else
+echo ""
+echo -----------paket $MODULE di build--------
+rpmbuild -ba ./SPECS/$MODULE.spec
+echo -----------paket $MODULE di build--------
+echo ""
+fi
+
+done << ign
+$LS
+ign
