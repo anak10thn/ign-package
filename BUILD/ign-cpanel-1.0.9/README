@@ -1,0 +1,18 @@
+ign-tcpanel
+-------
+
+ign-tcpanel is a control panel for distribution for IGN GNU/Linux, which serves to manage
+service, repository, packages, kernel modules, etc.. ign-tcpanel made ​​with PHP-GTK2.
+
+INSTALL
+-------
+~ make install
+
+UNINSTALL
+-------
+~ make uninstall
+
+BUILD TOROO PACKAGE
+-------------------
+~ make toroobuild
+
